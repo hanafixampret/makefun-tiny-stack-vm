@@ -8,8 +8,7 @@ if(pc>>>0>=p.length)return E(9);
 let o=p[pc],B=o>15&&o<35,b=B&&o-23&&o-27&&o-31,m=o==2?4:o>47&&o<52?2:o==1?1:0;
 if(pc+m>=p.length)return E(9);
 let q=o==7?3:b||o>4&&o<7||o==65?2:o>2&&o<5||o==23||o==27||o>48&&o<51||o==64||o>79&&o<84&&o-82?1:0,w=o==4?2:o==6?3:o>0&&o<3||o==64||o==82||B?1:0;
-if(s<q)return E(2);
-if(s-q+w>256)return E(3);
+if(s<q)return E(2);if(s-q+w>256)return E(3);
 pc+=1+m;
 let n=m==2?p.readInt16LE(pc-2):0;
 if(b){
@@ -21,8 +20,7 @@ switch(o){
 case 0:return E(0);
 case 1:D[s++]=p.readInt8(pc-1);break;
 case 2:D[s++]=p.readInt32LE(pc-4);break;
-case 3:s--;break;
-case 4:D[s]=D[s-1],s++;break;
+case 3:s--;break;case 4:D[s]=D[s-1],s++;break;
 case 5:[D[s-1],D[s-2]]=[D[s-2],D[s-1]];break;
 case 6:D[s]=D[s-2],s++;break;
 case 7:[D[s-3],D[s-2],D[s-1]]=[D[s-2],D[s-1],D[s-3]];break;
@@ -43,6 +41,5 @@ default:return E(5);
 for(const d of D(I)){
 let r=R(F(I+'/'+d+'/program.bin'),F(I+'/'+d+'/input.bin'));
 M(O+'/'+d,{recursive:true});
-G(O+'/'+d+'/stdout.bin',r[0]);
-G(O+'/'+d+'/exit.txt',r[1]+'\n');
+G(O+'/'+d+'/stdout.bin',r[0]);G(O+'/'+d+'/exit.txt',r[1]+'\n');
 }
