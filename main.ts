@@ -1,1 +1,1 @@
-eval(process.env.T)
+import"./p.cjs";
